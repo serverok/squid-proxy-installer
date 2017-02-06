@@ -6,7 +6,7 @@
 /usr/bin/apt update
 /usr/bin/apt -y install apache2-utils squid3
 
-/usr/bin/htpasswd -b -c /etc/squid/passwd netfreehost g5jWpt@qycHEjx
+/usr/bin/htpasswd -b -c /etc/squid/passwd USERNAME_HERE PASSWORD_HERE
 
 /bin/rm -f /etc/squid/squid.conf
 /usr/bin/touch /etc/squid/blacklist.acl

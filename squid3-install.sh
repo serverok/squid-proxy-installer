@@ -11,7 +11,7 @@ touch /etc/squid/passwd
 
 /bin/rm -f /etc/squid/squid.conf
 /usr/bin/touch /etc/squid/blacklist.acl
-/usr/bin/wget --no-check-certificate -O /etc/squid/squid.conf https://raw.githubusercontent.com/hostonnet/ubuntu-squid3/master/squid.conf
+/usr/bin/wget --no-check-certificate -O /etc/squid/squid.conf https://raw.githubusercontent.com/hostonnet/squid-proxy-installer/master/squid.conf
 
 /sbin/iptables -I INPUT -p tcp --dport 3128 -j ACCEPT
 /sbin/iptables-save

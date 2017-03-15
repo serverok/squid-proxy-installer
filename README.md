@@ -1,17 +1,13 @@
-# ubuntu-squid3
+# squid-proxy-installer
 
 Auto install Squid 3 proxy on Ubuntu 16.04 or better.
 
-# ubuntu-squid3
-
-Auto install Squid 3 proxy on Ubuntu 16.04 or better.
-
-## Install
+## Install Squid
 
 To install, run the script
 
 ```
-wget https://raw.githubusercontent.com/HostOnNet/ubuntu-squid3/master/squid3-install.sh
+wget https://raw.githubusercontent.com/HostOnNet/squid-proxy-installer/master/squid3-install.sh
 chmod 755 squid3-install.sh
 sudo ./squid3-install.sh
 ```

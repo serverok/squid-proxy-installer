@@ -1,6 +1,9 @@
 # squid-proxy-installer
 
-Auto install Squid 3 proxy on Ubuntu 16.04 or better.
+Auto install Squid 3 proxy on
+
+Ubuntu 14.04
+Ubuntu 16.04
 
 ## Install Squid
 

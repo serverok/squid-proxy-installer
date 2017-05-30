@@ -31,6 +31,7 @@ elif cat /etc/*release | grep DISTRIB_DESCRIPTION | grep "Ubuntu 14.04"; then
     ln -s /etc/squid3 /etc/squid
 elif cat /etc/os-release | grep PRETTY_NAME | grep "jessie"; then
     # OS = Debian 8
+    /bin/rm -rf /etc/squid
     /usr/bin/apt update
     /usr/bin/apt -y install apache2-utils squid3
     touch /etc/squid3/passwd

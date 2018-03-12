@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Squid Installer
-# Author: https://blog.hostonnet.com
-# Email: admin@hostonnet.com
-# Github: https://github.com/HostOnNet/squid-proxy-installer
+# Author: https://www.ServerOk.in
+# Email: info@ServerOk.in
+# Github: https://github.com/serverok/squid-proxy-installer
 
 if cat /etc/os-release | grep PRETTY_NAME | grep "Ubuntu 16.04"; then
     /usr/bin/apt update
@@ -11,7 +11,7 @@ if cat /etc/os-release | grep PRETTY_NAME | grep "Ubuntu 16.04"; then
     touch /etc/squid/passwd
     /bin/rm -f /etc/squid/squid.conf
     /usr/bin/touch /etc/squid/blacklist.acl
-    /usr/bin/wget --no-check-certificate -O /etc/squid/squid.conf https://raw.githubusercontent.com/hostonnet/squid-proxy-installer/master/squid.conf
+    /usr/bin/wget --no-check-certificate -O /etc/squid/squid.conf https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/squid.conf
     /sbin/iptables -I INPUT -p tcp --dport 3128 -j ACCEPT
     /sbin/iptables-save
     service squid restart
@@ -22,7 +22,7 @@ elif cat /etc/*release | grep DISTRIB_DESCRIPTION | grep "Ubuntu 14.04"; then
     touch /etc/squid3/passwd
     /bin/rm -f /etc/squid3/squid.conf
     /usr/bin/touch /etc/squid3/blacklist.acl
-    /usr/bin/wget --no-check-certificate -O /etc/squid3/squid.conf https://raw.githubusercontent.com/hostonnet/squid-proxy-installer/master/squid.conf
+    /usr/bin/wget --no-check-certificate -O /etc/squid3/squid.conf https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/squid.conf
     /sbin/iptables -I INPUT -p tcp --dport 3128 -j ACCEPT
     /sbin/iptables-save
     service squid3 restart
@@ -37,14 +37,14 @@ elif cat /etc/os-release | grep PRETTY_NAME | grep "jessie"; then
     touch /etc/squid3/passwd
     /bin/rm -f /etc/squid3/squid.conf
     /usr/bin/touch /etc/squid3/blacklist.acl
-    /usr/bin/wget --no-check-certificate -O /etc/squid3/squid.conf https://raw.githubusercontent.com/hostonnet/squid-proxy-installer/master/squid.conf
+    /usr/bin/wget --no-check-certificate -O /etc/squid3/squid.conf https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/squid.conf
     /sbin/iptables -I INPUT -p tcp --dport 3128 -j ACCEPT
     /sbin/iptables-save
     service squid3 restart
     update-rc.d squid3 defaults
     ln -s /etc/squid3 /etc/squid
 else
-    echo "OS NOT SUPPORTED. Contact admin@hostonnet.com to add support for your OS"
+    echo "OS NOT SUPPORTED. Contact info@ServerOk.in to add support for your OS"
     exit 1;
 fi
 

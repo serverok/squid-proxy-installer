@@ -68,9 +68,9 @@ elif cat /etc/os-release | grep PRETTY_NAME | grep "stretch"; then
     systemctl enable squid
     systemctl restart squid
 else
-    echo "OS NOT SUPPORTED. Contact info@ServerOk.in to add support for your OS"
+    echo "OS NOT SUPPORTED.\n"
+    echo "Contact admin@serverok.in to add support for your OS."
     exit 1;
 fi
-
 
 #/usr/bin/htpasswd -b -c /etc/squid/passwd USERNAME_HERE PASSWORD_HERE

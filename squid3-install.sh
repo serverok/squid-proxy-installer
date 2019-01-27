@@ -69,7 +69,7 @@ elif cat /etc/os-release | grep PRETTY_NAME | grep "stretch"; then
     systemctl restart squid
 else
     echo "OS NOT SUPPORTED.\n"
-    echo "Contact admin@serverok.in to add support for your OS."
+    echo "Contact admin@serverok.in to add support for your os."
     exit 1;
 fi
 

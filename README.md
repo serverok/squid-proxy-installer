@@ -12,7 +12,7 @@ Debian 8
 To install, run the script
 
 ```
-wget https://raw.githubusercontent.com/HostOnNet/squid-proxy-installer/master/squid3-install.sh
+wget https://raw.githubusercontent.com/Juxstin/squid-proxy-installer/master/squid3-install.sh
 chmod 755 squid3-install.sh
 sudo ./squid3-install.sh
 ```

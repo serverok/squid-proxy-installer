@@ -6,6 +6,7 @@ Auto install Squid 3 proxy on
 + Ubuntu 16.04
 + Ubuntu 18.04
 + Ubuntu 18.10
++ Ubuntu 19.04
 + Debian 8 
 
 ## Install Squid

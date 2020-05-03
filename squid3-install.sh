@@ -136,6 +136,3 @@ else
     echo "OS NOT SUPPORTED. Contact info@ServerOk.in or https://github.com/Juxstin to add support for your OS"
     exit 1;
 fi
-
-
-#/usr/bin/htpasswd -b -c /etc/squid/passwd USERNAME_HERE PASSWORD_HERE

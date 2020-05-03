@@ -15,7 +15,7 @@ if cat /etc/os-release | grep PRETTY_NAME | grep "Ubuntu 20.04"; then
     /sbin/iptables-save
     service squid restart
     systemctl enable squid
-if cat /etc/os-release | grep PRETTY_NAME | grep "Ubuntu 19.10"; then
+elif cat /etc/os-release | grep PRETTY_NAME | grep "Ubuntu 19.10"; then
     /usr/bin/apt update
     /usr/bin/apt -y install apache2-utils squid3
     touch /etc/squid/passwd

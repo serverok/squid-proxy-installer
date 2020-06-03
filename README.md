@@ -18,5 +18,5 @@ Auto install Squid 3 proxy on
 To install, run the script
 
 ```
-wget https://raw.githubusercontent.com/Juxstin/squid-proxy-installer/master/squid3-install.sh && chmod 755 squid3-install.sh && sudo ./squid3-install.sh
+wget https://raw.githubusercontent.com/JReverse/squid-proxy-installer/master/squid3-install.sh && chmod 755 squid3-install.sh && sudo ./squid3-install.sh
 ```

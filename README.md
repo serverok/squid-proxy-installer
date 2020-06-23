@@ -12,6 +12,7 @@ Auto install Squid 3 proxy on
 + Ubuntu 20.04
 + Debian 8
 + Debian 9
++ Centos 7
 
 ## Install Squid
 

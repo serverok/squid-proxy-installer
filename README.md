@@ -44,3 +44,10 @@ To update password for am existing user, run
 ```
 
 replace USERNAME_HERE and PASSWORD_HERE with your desired user name and password.
+
+Restart squid proxy
+
+```
+systemctl restart squid
+```
+

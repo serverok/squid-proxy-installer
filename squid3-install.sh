@@ -141,6 +141,15 @@ elif cat /etc/os-release | grep PRETTY_NAME | grep "CentOS Linux 7"; then
     systemctl restart squid
     firewall-cmd --zone=public --permanent --add-port=7777/tcp
     firewall-cmd --reload
+elif cat /etc/os-release | grep PRETTY_NAME | grep "CentOS Linux 8"; then
+    yum install squid httpd-tools -y
+    /bin/rm -f /etc/squid/squid.conf
+    /usr/bin/touch /etc/squid/blacklist.acl
+    /usr/bin/wget --no-check-certificate -O /etc/squid/squid.conf https://raw.githubusercontent.com/JReverse/squid-proxy-installer/master/squid.conf
+    systemctl enable squid
+    systemctl restart squid
+    firewall-cmd --zone=public --permanent --add-port=7777/tcp
+    firewall-cmd --reload
 else
     echo "OS NOT SUPPORTED. Contact info@ServerOk.in or https://github.com/JReverse to add support for your OS"
     exit 1;

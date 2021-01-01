@@ -26,7 +26,7 @@ Before you can configure squid to use muliple IP address, you need to add IP to 
 Once IP added to your server, you can configure it to use with squid proxy by running following command
 
 ```
-wget https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/squid-conf-ip.sh && bash squid-conf-ip.sh
+wget https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/squid-conf-ip.sh && sudo bash squid-conf-ip.sh
 ```
 
 # Create Users
@@ -51,3 +51,8 @@ Restart squid proxy
 systemctl restart squid
 ```
 
+# Support
+
+If you are looking for paid support, contact me
+
+https://serverok.in/contact

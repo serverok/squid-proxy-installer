@@ -1,6 +1,6 @@
-# squid-proxy-installer
+# Squid Proxy Installer
 
-Auto install Squid 3 proxy on
+Auto install Squid 3 proxy on following linux OS.
 
 * Ubuntu 20.04
 * Ubuntu 18.04

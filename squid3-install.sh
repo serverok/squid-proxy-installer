@@ -1,11 +1,38 @@
 #!/bin/bash
-
-# Squid Installer
-# Author: https://www.serverOk.in
+############################################################
+# Squid Proxy Installer
+# Author: Yujin Boby
 # Email: info@serverOk.in
-# Github: https://github.com/serverok/squid
+# Github: https://github.com/serverok/squid-proxy-installer/
+# Web: https://serverok.in/squid
+############################################################
+# For paid support, contact
+# https://serverok.in/contact
+############################################################
 
-if cat /etc/os-release | grep PRETTY_NAME | grep "Ubuntu 18.04"; then
+create_proxy_user() {
+    if [[ ! $(tty) =~ "not a tty" ]]
+    then
+        read -e -p "Enter Proxy username: " proxy_username
+        /usr/bin/htpasswd -c /etc/squid/passwd $proxy_username
+    fi
+}
+
+if cat /etc/os-release | grep PRETTY_NAME | grep "Ubuntu 20.04"; then
+    /usr/bin/apt update
+    /usr/bin/apt -y install apache2-utils squid3
+    touch /etc/squid/passwd
+    /bin/rm -f /etc/squid/squid.conf
+    /usr/bin/touch /etc/squid/blacklist.acl
+    /usr/bin/wget --no-check-certificate -O /etc/squid/squid.conf https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/squid.conf
+    if [ -f /sbin/iptables ]; then
+        /sbin/iptables -I INPUT -p tcp --dport 3128 -j ACCEPT
+        /sbin/iptables-save
+    fi
+    create_proxy_user
+    service squid restart
+    systemctl enable squid
+elif cat /etc/os-release | grep PRETTY_NAME | grep "Ubuntu 18.04"; then
     /usr/bin/apt update
     /usr/bin/apt -y install apache2-utils squid3
     touch /etc/squid/passwd
@@ -14,6 +41,7 @@ if cat /etc/os-release | grep PRETTY_NAME | grep "Ubuntu 18.04"; then
     /usr/bin/wget --no-check-certificate -O /etc/squid/squid.conf https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/squid.conf
     /sbin/iptables -I INPUT -p tcp --dport 3128 -j ACCEPT
     /sbin/iptables-save
+    create_proxy_user
     service squid restart
     systemctl enable squid
 elif cat /etc/os-release | grep PRETTY_NAME | grep "Ubuntu 16.04"; then
@@ -25,6 +53,7 @@ elif cat /etc/os-release | grep PRETTY_NAME | grep "Ubuntu 16.04"; then
     /usr/bin/wget --no-check-certificate -O /etc/squid/squid.conf https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/squid.conf
     /sbin/iptables -I INPUT -p tcp --dport 3128 -j ACCEPT
     /sbin/iptables-save
+    create_proxy_user
     service squid restart
     update-rc.d squid defaults
 elif cat /etc/*release | grep DISTRIB_DESCRIPTION | grep "Ubuntu 14.04"; then
@@ -36,6 +65,7 @@ elif cat /etc/*release | grep DISTRIB_DESCRIPTION | grep "Ubuntu 14.04"; then
     /usr/bin/wget --no-check-certificate -O /etc/squid3/squid.conf https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/squid.conf
     /sbin/iptables -I INPUT -p tcp --dport 3128 -j ACCEPT
     /sbin/iptables-save
+    create_proxy_user
     service squid3 restart
     ln -s /etc/squid3 /etc/squid
     #update-rc.d squid3 defaults
@@ -51,6 +81,7 @@ elif cat /etc/os-release | grep PRETTY_NAME | grep "jessie"; then
     /usr/bin/wget --no-check-certificate -O /etc/squid3/squid.conf https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/squid.conf
     /sbin/iptables -I INPUT -p tcp --dport 3128 -j ACCEPT
     /sbin/iptables-save
+    create_proxy_user
     service squid3 restart
     update-rc.d squid3 defaults
     ln -s /etc/squid3 /etc/squid
@@ -65,6 +96,7 @@ elif cat /etc/os-release | grep PRETTY_NAME | grep "stretch"; then
     /usr/bin/wget --no-check-certificate -O /etc/squid/squid.conf https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/squid.conf
     /sbin/iptables -I INPUT -p tcp --dport 3128 -j ACCEPT
     /sbin/iptables-save
+    create_proxy_user
     systemctl enable squid
     systemctl restart squid
 elif cat /etc/os-release | grep PRETTY_NAME | grep "buster"; then
@@ -78,6 +110,7 @@ elif cat /etc/os-release | grep PRETTY_NAME | grep "buster"; then
     /usr/bin/wget --no-check-certificate -O /etc/squid/squid.conf https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/squid.conf
     /sbin/iptables -I INPUT -p tcp --dport 3128 -j ACCEPT
     /sbin/iptables-save
+    create_proxy_user
     systemctl enable squid
     systemctl restart squid
 elif cat /etc/os-release | grep PRETTY_NAME | grep "CentOS Linux 7"; then
@@ -85,6 +118,7 @@ elif cat /etc/os-release | grep PRETTY_NAME | grep "CentOS Linux 7"; then
     /bin/rm -f /etc/squid/squid.conf
     /usr/bin/touch /etc/squid/blacklist.acl
     /usr/bin/wget --no-check-certificate -O /etc/squid/squid.conf https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/conf/squid-centos7.conf
+    create_proxy_user
     systemctl enable squid
     systemctl restart squid
     firewall-cmd --zone=public --permanent --add-port=3128/tcp
@@ -95,4 +129,4 @@ else
     exit 1;
 fi
 
-#/usr/bin/htpasswd -b -c /etc/squid/passwd USERNAME_HERE PASSWORD_HERE
+echo "Thank you for using ServerOk Squid Proxy Installer."

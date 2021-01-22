@@ -7,8 +7,8 @@ Auto install Squid 3 proxy on
 * Ubuntu 16.04
 * Ubuntu 14.04
 * Debian 10
-* Debian 8
 * Debian 9
+* Debian 8
 
 
 ## Install Squid
@@ -38,13 +38,13 @@ sudo bash squid-conf-ip.sh
 To create users, run
 
 ```
-/usr/bin/htpasswd -b -c /etc/squid/passwd USERNAME_HERE PASSWORD_HERE
+sudo /usr/bin/htpasswd -b -c /etc/squid/passwd USERNAME_HERE PASSWORD_HERE
 ```
 
 To update password for am existing user, run
 
 ```
-/usr/bin/htpasswd /etc/squid/passwd USERNAME_HERE
+sudo /usr/bin/htpasswd /etc/squid/passwd USERNAME_HERE
 ```
 
 replace USERNAME_HERE and PASSWORD_HERE with your desired user name and password.
@@ -52,7 +52,7 @@ replace USERNAME_HERE and PASSWORD_HERE with your desired user name and password
 Restart squid proxy
 
 ```
-systemctl restart squid
+sudo systemctl restart squid
 ```
 
 # Support

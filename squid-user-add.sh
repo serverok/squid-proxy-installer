@@ -10,6 +10,10 @@
 # https://serverok.in/contact
 ############################################################
 
+if [ ! -f /usr/bin/htpasswd ]; then
+    echo "htpasswd not found"
+    exit 1
+fi
 
 read -e -p "Enter Proxy username: " proxy_username
 

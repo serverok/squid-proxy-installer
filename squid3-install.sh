@@ -20,6 +20,11 @@ chmod 755 /usr/local/bin/squid-uninstall
 /usr/bin/wget --no-check-certificate -O /usr/local/bin/squid-user-add https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/squid-user-add.sh > /dev/null 2>&1
 chmod 755 /usr/local/bin/squid-user-add
 
+if [ -d /etc/squid/ ] || [ -d /etc/squid3/ ]; then
+    echo "Squid Proxy already installed. If you want to reinstall, first uninstall squid proxy by running command: squid-uninstall"
+    exit 1
+fi
+
 if cat /etc/os-release | grep PRETTY_NAME | grep "Ubuntu 20.04"; then
     /usr/bin/apt update
     /usr/bin/apt -y install apache2-utils squid3

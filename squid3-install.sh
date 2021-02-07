@@ -129,3 +129,4 @@ else
 fi
 
 echo "Thank you for using ServerOk Squid Proxy Installer."
+echo "To create a proxy user, run command: squid-add-user"

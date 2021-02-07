@@ -53,10 +53,10 @@ sudo /usr/bin/htpasswd /etc/squid/passwd USERNAME_HERE
 
 replace USERNAME_HERE and PASSWORD_HERE with your desired user name and password.
 
-Restart squid proxy
+Reload squid proxy
 
 ```
-sudo systemctl restart squid
+sudo systemctl reload squid
 ```
 
 # Support

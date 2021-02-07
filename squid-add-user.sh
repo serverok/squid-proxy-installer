@@ -46,6 +46,8 @@ elif [ $SOK_OS == "debian10" ]; then
     systemctl reload squid
 elif [ $SOK_OS == "centos7" ]; then
     systemctl reload squid
+elif [ $SOK_OS == "centos8" ]; then
+    systemctl reload squid
 else
     echo "OS NOT SUPPORTED.\n"
     echo "Contact admin@serverok.in to add support for your os."

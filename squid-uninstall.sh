@@ -49,6 +49,9 @@ elif [ $SOK_OS == "debian10" ]; then
 elif [ $SOK_OS == "centos7" ]; then
     yum remove squid -y
     /bin/rm -rf /etc/squid/
+elif [ $SOK_OS == "centos8" ]; then
+    yum remove squid -y
+    /bin/rm -rf /etc/squid/
 else
     echo "OS NOT SUPPORTED.\n"
     echo "Contact admin@serverok.in to add support for your os."

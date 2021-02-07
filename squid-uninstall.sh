@@ -55,7 +55,7 @@ else
     exit 1;
 fi
 
-rm -f /usr/local/bin/squid-user-add > /dev/null 2>&1
+rm -f /usr/local/bin/squid-add-user > /dev/null 2>&1
 
 echo 
 echo 

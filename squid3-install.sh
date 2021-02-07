@@ -17,8 +17,8 @@ chmod 755 /usr/local/bin/sok-find-os
 /usr/bin/wget --no-check-certificate -O /usr/local/bin/squid-uninstall https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/squid-uninstall.sh > /dev/null 2>&1
 chmod 755 /usr/local/bin/squid-uninstall
 
-/usr/bin/wget --no-check-certificate -O /usr/local/bin/squid-user-add https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/squid-user-add.sh > /dev/null 2>&1
-chmod 755 /usr/local/bin/squid-user-add
+/usr/bin/wget --no-check-certificate -O /usr/local/bin/squid-add-user https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/squid-add-user.sh > /dev/null 2>&1
+chmod 755 /usr/local/bin/squid-add-user
 
 if [[ -d /etc/squid/ || -d /etc/squid3/ ]]; then
     echo "Squid Proxy already installed. If you want to reinstall, first uninstall squid proxy by running command: squid-uninstall"

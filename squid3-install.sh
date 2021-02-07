@@ -128,5 +128,7 @@ else
     exit 1;
 fi
 
-echo "Thank you for using ServerOk Squid Proxy Installer."
+echo
+echo "Thank you for using ServerOk.in Squid Proxy Installer."
 echo "To create a proxy user, run command: squid-add-user"
+echo 

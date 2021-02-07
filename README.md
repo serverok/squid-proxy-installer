@@ -1,14 +1,12 @@
 # Squid Proxy Installer
 
+https://serverok.in/squid
+
 Auto install Squid 3 proxy on following linux OS.
 
-* Ubuntu 20.04
-* Ubuntu 18.04
-* Ubuntu 16.04
-* Ubuntu 14.04
-* Debian 10
-* Debian 9
-* Debian 8
+* Ubuntu 14.04, 16.04, 18.04, 20.04
+* Debian 8, 9, 10
+* CentOS 7
 
 
 ## Install Squid
@@ -36,6 +34,12 @@ sudo bash squid-conf-ip.sh
 # Create Users
 
 To create users, run
+
+```
+squid-add-user
+```
+
+OR run following commands
 
 ```
 sudo /usr/bin/htpasswd -b -c /etc/squid/passwd USERNAME_HERE PASSWORD_HERE

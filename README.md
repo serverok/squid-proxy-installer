@@ -18,18 +18,11 @@ wget https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/squ
 sudo bash squid3-install.sh
 ```
 
-# Configure Multiple IP Address
+[![How to install Squid Proxy Server in DigitalOcean VPS](https://img.youtube.com/vi/akz_-G9WKM0/0.jpg)](http://www.youtube.com/watch?v=akz_-G9WKM0)
 
-NOTE: This is only needed if you have more than one IP on your server.
+http://www.youtube.com/watch?v=akz_-G9WKM0
 
-Before you can configure squid to use muliple IP address, you need to add IP to your server and you should be able to connect to server using these IPs.
 
-Once IP added to your server, you can configure it to use with squid proxy by running following command
-
-```
-wget https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/squid-conf-ip.sh
-sudo bash squid-conf-ip.sh
-```
 
 # Create Users
 
@@ -57,6 +50,19 @@ Reload squid proxy
 
 ```
 sudo systemctl reload squid
+```
+
+# Configure Multiple IP Address
+
+NOTE: This is only needed if you have more than one IP on your server.
+
+Before you can configure squid to use muliple IP address, you need to add IP to your server and you should be able to connect to server using these IPs.
+
+Once IP added to your server, you can configure it to use with squid proxy by running following command
+
+```
+wget https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/squid-conf-ip.sh
+sudo bash squid-conf-ip.sh
 ```
 
 # Support

@@ -133,7 +133,7 @@ elif cat /etc/os-release | grep PRETTY_NAME | grep "CentOS Linux 8"; then
     firewall-cmd --reload
 else
     echo "OS NOT SUPPORTED.\n"
-    echo "Contact admin@serverok.in to add support for your os."
+    echo "Contact https://serverok.in/contact to add support for your os."
     exit 1;
 fi
 

@@ -31,9 +31,9 @@ fi
 SOK_OS=$(/usr/local/bin/sok-find-os)
 
 if [ $SOK_OS == "ubuntu2004" ]; then
-    systemctl restart squid
+    systemctl reload squid
 elif [ $SOK_OS == "ubuntu1804" ]; then
-    systemctl restart squid
+    systemctl reload squid
 elif [ $SOK_OS == "ubuntu1604" ]; then
     service squid restart
 elif [ $SOK_OS == "ubuntu1404" ]; then
@@ -41,11 +41,11 @@ elif [ $SOK_OS == "ubuntu1404" ]; then
 elif [ $SOK_OS == "debian8" ]; then
     service squid3 restart
 elif [ $SOK_OS == "debian9" ]; then
-    systemctl restart squid
+    systemctl reload squid
 elif [ $SOK_OS == "debian10" ]; then
-    systemctl restart squid
+    systemctl reload squid
 elif [ $SOK_OS == "centos7" ]; then
-    systemctl restart squid
+    systemctl reload squid
 else
     echo "OS NOT SUPPORTED.\n"
     echo "Contact admin@serverok.in to add support for your os."

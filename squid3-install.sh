@@ -2,7 +2,7 @@
 ############################################################
 # Squid Proxy Installer
 # Author: Yujin Boby
-# Email: info@serverOk.in
+# Email: admin@serverOk.in
 # Github: https://github.com/serverok/squid-proxy-installer/
 # Web: https://serverok.in/squid
 ############################################################
@@ -114,6 +114,15 @@ elif cat /etc/os-release | grep PRETTY_NAME | grep "buster"; then
     systemctl enable squid
     systemctl restart squid
 elif cat /etc/os-release | grep PRETTY_NAME | grep "CentOS Linux 7"; then
+    yum install squid httpd-tools -y
+    /bin/rm -f /etc/squid/squid.conf
+    /usr/bin/touch /etc/squid/blacklist.acl
+    /usr/bin/wget --no-check-certificate -O /etc/squid/squid.conf https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/conf/squid-centos7.conf
+    systemctl enable squid
+    systemctl restart squid
+    firewall-cmd --zone=public --permanent --add-port=3128/tcp
+    firewall-cmd --reload
+elif cat /etc/os-release | grep PRETTY_NAME | grep "CentOS Linux 8"; then
     yum install squid httpd-tools -y
     /bin/rm -f /etc/squid/squid.conf
     /usr/bin/touch /etc/squid/blacklist.acl

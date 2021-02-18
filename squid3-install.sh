@@ -10,6 +10,10 @@
 # https://serverok.in/contact
 ############################################################
 
+if [ `whoami` != root ]; then
+	echo "ERROR: You need to run the script as user root or add sudo before command."
+	exit 1
+fi
 
 /usr/bin/wget --no-check-certificate -O /usr/local/bin/sok-find-os https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/sok-find-os.sh > /dev/null 2>&1
 chmod 755 /usr/local/bin/sok-find-os

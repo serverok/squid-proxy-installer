@@ -10,6 +10,11 @@
 # https://serverok.in/contact
 ############################################################
 
+if [ `whoami` != root ]; then
+	echo "ERROR: You need to run the script as user root or add sudo before command."
+	exit 1
+fi
+
 if [ ! -f /usr/bin/htpasswd ]; then
     echo "htpasswd not found"
     exit 1

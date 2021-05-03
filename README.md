@@ -14,6 +14,7 @@ Auto install Squid 3 proxy on
 + Debian 9
 + Centos 7
 + Centos 8
++ Centos Stream 8
 
 ## Install Squid
 

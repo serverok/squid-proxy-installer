@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Squid Installer
-# Author: https://www.serverOk.in
+# Author: https://www.serverOk.in & JReverse
 # Email: info@serverOk.in
-# Github: https://github.com/serverok/squid-proxy-
+# Github: https://github.com/serverok/squid-proxy- // https://github.com/JReverse/squid-proxy-installer
 if cat /etc/os-release | grep PRETTY_NAME | grep "Ubuntu 20.04"; then
     /usr/bin/apt update
     /usr/bin/apt -y install apache2-utils squid3
@@ -142,6 +142,15 @@ elif cat /etc/os-release | grep PRETTY_NAME | grep "CentOS Linux 7"; then
     firewall-cmd --zone=public --permanent --add-port=7777/tcp
     firewall-cmd --reload
 elif cat /etc/os-release | grep PRETTY_NAME | grep "CentOS Linux 8"; then
+    yum install squid httpd-tools -y
+    /bin/rm -f /etc/squid/squid.conf
+    /usr/bin/touch /etc/squid/blacklist.acl
+    /usr/bin/wget --no-check-certificate -O /etc/squid/squid.conf https://raw.githubusercontent.com/JReverse/squid-proxy-installer/master/squid.conf
+    systemctl enable squid
+    systemctl restart squid
+    firewall-cmd --zone=public --permanent --add-port=7777/tcp
+    firewall-cmd --reload
+elif cat /etc/os-release | grep PRETTY_NAME | grep "CentOS Stream"; then
     yum install squid httpd-tools -y
     /bin/rm -f /etc/squid/squid.conf
     /usr/bin/touch /etc/squid/blacklist.acl

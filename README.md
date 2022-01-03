@@ -18,6 +18,8 @@ wget https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/squ
 sudo bash squid3-install.sh
 ```
 
+[![How to install Squid Proxy Server in DigitalOcean VPS](https://i.imgur.com/eGt5nmB.png)](https://rumble.com/vdswgv-install-squid-proxy-server-in-digitalocean-vps.html)
+
 https://rumble.com/vdswgv-install-squid-proxy-server-in-digitalocean-vps.html
 
 

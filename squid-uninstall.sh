@@ -23,7 +23,7 @@ fi
 SOK_OS=$(/usr/local/bin/sok-find-os)
 
 if [ $SOK_OS == "ubuntu2004" ]; then
-    /usr/bin/apt -y remove --purge squid3
+    /usr/bin/apt -y remove --purge squid*
     rm -rf /etc/squid/
 elif [ $SOK_OS == "ubuntu1804" ]; then
     /usr/bin/apt -y remove --purge squid3
@@ -59,7 +59,7 @@ elif [ $SOK_OS == "centos8" ]; then
     /bin/rm -rf /etc/squid/
 else
     echo "OS NOT SUPPORTED.\n"
-    echo "Contact https://serverok.in/contact to add support for your os."
+    echo "Contact https://serverok.in/contact to add support for your OS."
     exit 1;
 fi
 

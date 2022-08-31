@@ -4,7 +4,7 @@ https://serverok.in/squid
 
 Auto install Squid 3 proxy on following linux OS.
 
-* Ubuntu 14.04, 16.04, 18.04, 20.04
+* Ubuntu 14.04, 16.04, 18.04, 20.04, 22.04
 * Debian 8, 9, 10
 * CentOS 7, 8
 
@@ -67,6 +67,10 @@ Once IP added to your server, you can configure it to use with squid proxy by ru
 wget https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/squid-conf-ip.sh
 sudo bash squid-conf-ip.sh
 ```
+
+# Change Squid Proxy Port
+
+https://serverok.in/how-to-change-port-of-squid-proxy-server
 
 # Support
 

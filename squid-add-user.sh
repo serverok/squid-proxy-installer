@@ -35,7 +35,9 @@ fi
 
 SOK_OS=$(/usr/local/bin/sok-find-os)
 
-if [ $SOK_OS == "ubuntu2004" ]; then
+if [ $SOK_OS == "ubuntu2204" ]; then
+    systemctl reload squid
+elif [ $SOK_OS == "ubuntu2004" ]; then
     systemctl reload squid
 elif [ $SOK_OS == "ubuntu1804" ]; then
     systemctl reload squid
@@ -55,6 +57,6 @@ elif [ $SOK_OS == "centos8" ]; then
     systemctl reload squid
 else
     echo "OS NOT SUPPORTED.\n"
-    echo "Contact admin@serverok.in to add support for your os."
+    echo "Contact https://serverok.in/contact to add support for your OS."
     exit 1;
 fi

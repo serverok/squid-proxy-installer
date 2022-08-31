@@ -10,7 +10,9 @@
 # https://serverok.in/contact
 ############################################################
 
-if cat /etc/os-release | grep PRETTY_NAME | grep "Ubuntu 20.04" > /dev/null; then
+if cat /etc/os-release | grep PRETTY_NAME | grep "Ubuntu 22.04" > /dev/null; then
+    echo "ubuntu2204"
+elif cat /etc/os-release | grep PRETTY_NAME | grep "Ubuntu 20.04" > /dev/null; then
     echo "ubuntu2004"
 elif cat /etc/os-release | grep PRETTY_NAME | grep "Ubuntu 18.04" > /dev/null; then
     echo "ubuntu1804"

@@ -24,10 +24,8 @@ sudo bash squid3-install.sh
 
 https://rumble.com/vdswgv-install-squid-proxy-server-in-digitalocean-vps.html
 
-https://odysee.com/squid-proxy-install:1
 
-
-# Create Users
+# Create Proxy Users
 
 To create users, run
 
@@ -70,10 +68,12 @@ sudo bash squid-conf-ip.sh
 
 # Change Squid Proxy Port
 
+Default squid proxy port is 3128. This blog post will show how to change squid port.
+
 https://serverok.in/how-to-change-port-of-squid-proxy-server
 
 # Support
 
-If you are looking for paid support, contact me
+If you need professional assistance, reach out to
 
 https://serverok.in/contact

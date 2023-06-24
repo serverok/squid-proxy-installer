@@ -1,12 +1,12 @@
 #!/bin/bash
+
 ############################################################
 # Squid Proxy Installer
 # Author: Yujin Boby
-# Email: info@serverok.in
+# Email: admin@serverOk.in
 # Github: https://github.com/serverok/squid-proxy-installer/
 # Web: https://serverok.in/squid
-############################################################
-# For paid support, contact
+# If you need professional assistance, reach out to
 # https://serverok.in/contact
 ############################################################
 
@@ -51,6 +51,11 @@ elif [ $SOK_OS == "debian9" ]; then
     /bin/rm -rf /var/spool/squid
 elif [ $SOK_OS == "debian10" ]; then
     echo "Uninstalling Squid Proxy on Debian 10"
+    /usr/bin/apt -y remove --purge squid squid-common squid-langpack
+    /bin/rm -rf /etc/squid/
+    /bin/rm -rf /var/spool/squid
+elif [ $SOK_OS == "debian11" ]; then
+    echo "Uninstalling Squid Proxy on Debian 11"
     /usr/bin/apt -y remove --purge squid squid-common squid-langpack
     /bin/rm -rf /etc/squid/
     /bin/rm -rf /var/spool/squid

@@ -170,10 +170,6 @@ elif [ $SOK_OS == "centos8" ]; then
     systemctl restart squid
     firewall-cmd --zone=public --permanent --add-port=3128/tcp
     firewall-cmd --reload
-else
-    echo "OS NOT SUPPORTED.\n"
-    echo "Contact https://serverok.in/contact to add support for your OS."
-    exit 1;
 fi
 
 echo

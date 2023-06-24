@@ -65,10 +65,6 @@ elif [ $SOK_OS == "centos7" ]; then
 elif [ $SOK_OS == "centos8" ]; then
     yum remove squid -y
     /bin/rm -rf /etc/squid/
-else
-    echo "OS NOT SUPPORTED.\n"
-    echo "Contact https://serverok.in/contact to add support for your OS."
-    exit 1;
 fi
 
 rm -f /usr/local/bin/squid-add-user > /dev/null 2>&1

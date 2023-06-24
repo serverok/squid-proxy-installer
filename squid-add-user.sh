@@ -57,8 +57,4 @@ elif [ $SOK_OS == "centos7" ]; then
     systemctl reload squid
 elif [ $SOK_OS == "centos8" ]; then
     systemctl reload squid
-else
-    echo "OS NOT SUPPORTED.\n"
-    echo "Contact https://serverok.in/contact to add support for your OS."
-    exit 1;
 fi

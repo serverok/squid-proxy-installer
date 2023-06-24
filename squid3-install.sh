@@ -1,12 +1,12 @@
 #!/bin/bash
+
 ############################################################
 # Squid Proxy Installer
 # Author: Yujin Boby
 # Email: admin@serverOk.in
 # Github: https://github.com/serverok/squid-proxy-installer/
 # Web: https://serverok.in/squid
-############################################################
-# For paid support, contact
+# If you need professional assistance, reach out to
 # https://serverok.in/contact
 ############################################################
 
@@ -119,6 +119,19 @@ elif cat /etc/os-release | grep PRETTY_NAME | grep "stretch"; then
     systemctl restart squid
 elif cat /etc/os-release | grep PRETTY_NAME | grep "buster"; then
     # OS = Debian 10
+    /bin/rm -rf /etc/squid
+    /usr/bin/apt update
+    /usr/bin/apt -y install apache2-utils squid
+    touch /etc/squid/passwd
+    /bin/rm -f /etc/squid/squid.conf
+    /usr/bin/touch /etc/squid/blacklist.acl
+    /usr/bin/wget --no-check-certificate -O /etc/squid/squid.conf https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/squid.conf
+    /sbin/iptables -I INPUT -p tcp --dport 3128 -j ACCEPT
+    /sbin/iptables-save
+    systemctl enable squid
+    systemctl restart squid
+elif cat /etc/os-release | grep PRETTY_NAME | grep "bullseye"; then
+    # OS = Debian GNU/Linux 11 (bullseye)
     /bin/rm -rf /etc/squid
     /usr/bin/apt update
     /usr/bin/apt -y install apache2-utils squid

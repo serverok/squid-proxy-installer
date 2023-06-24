@@ -29,7 +29,14 @@ if [[ -d /etc/squid/ || -d /etc/squid3/ ]]; then
     exit 1
 fi
 
-if cat /etc/os-release | grep PRETTY_NAME | grep "Ubuntu 22.04"; then
+if [ ! -f /usr/local/bin/sok-find-os ]; then
+    echo "/usr/local/bin/sok-find-os not found"
+    exit 1
+fi
+
+SOK_OS=$(/usr/local/bin/sok-find-os)
+
+if [ $SOK_OS == "ubuntu2204" ]; then
     /usr/bin/apt update
     /usr/bin/apt -y install apache2-utils squid
     touch /etc/squid/passwd
@@ -42,7 +49,7 @@ if cat /etc/os-release | grep PRETTY_NAME | grep "Ubuntu 22.04"; then
     fi
     service squid restart
     systemctl enable squid
-elif cat /etc/os-release | grep PRETTY_NAME | grep "Ubuntu 20.04"; then
+elif [ $SOK_OS == "ubuntu2004" ]; then
     /usr/bin/apt update
     /usr/bin/apt -y install apache2-utils squid
     touch /etc/squid/passwd
@@ -55,7 +62,7 @@ elif cat /etc/os-release | grep PRETTY_NAME | grep "Ubuntu 20.04"; then
     fi
     service squid restart
     systemctl enable squid
-elif cat /etc/os-release | grep PRETTY_NAME | grep "Ubuntu 18.04"; then
+elif [ $SOK_OS == "ubuntu1804" ]; then
     /usr/bin/apt update
     /usr/bin/apt -y install apache2-utils squid3
     touch /etc/squid/passwd
@@ -66,7 +73,7 @@ elif cat /etc/os-release | grep PRETTY_NAME | grep "Ubuntu 18.04"; then
     /sbin/iptables-save
     service squid restart
     systemctl enable squid
-elif cat /etc/os-release | grep PRETTY_NAME | grep "Ubuntu 16.04"; then
+elif [ $SOK_OS == "ubuntu1604" ]; then
     /usr/bin/apt update
     /usr/bin/apt -y install apache2-utils squid3
     touch /etc/squid/passwd
@@ -77,7 +84,7 @@ elif cat /etc/os-release | grep PRETTY_NAME | grep "Ubuntu 16.04"; then
     /sbin/iptables-save
     service squid restart
     update-rc.d squid defaults
-elif cat /etc/*release | grep DISTRIB_DESCRIPTION | grep "Ubuntu 14.04"; then
+elif [ $SOK_OS == "ubuntu1404" ]; then
     /usr/bin/apt update
     /usr/bin/apt -y install apache2-utils squid3
     touch /etc/squid3/passwd
@@ -90,7 +97,7 @@ elif cat /etc/*release | grep DISTRIB_DESCRIPTION | grep "Ubuntu 14.04"; then
     ln -s /etc/squid3 /etc/squid
     #update-rc.d squid3 defaults
     ln -s /etc/squid3 /etc/squid
-elif cat /etc/os-release | grep PRETTY_NAME | grep "jessie"; then
+elif [ $SOK_OS == "debian8" ]; then
     # OS = Debian 8
     /bin/rm -rf /etc/squid
     /usr/bin/apt update
@@ -104,7 +111,7 @@ elif cat /etc/os-release | grep PRETTY_NAME | grep "jessie"; then
     service squid3 restart
     update-rc.d squid3 defaults
     ln -s /etc/squid3 /etc/squid
-elif cat /etc/os-release | grep PRETTY_NAME | grep "stretch"; then
+elif [ $SOK_OS == "debian9" ]; then
     # OS = Debian 9
     /bin/rm -rf /etc/squid
     /usr/bin/apt update
@@ -117,7 +124,7 @@ elif cat /etc/os-release | grep PRETTY_NAME | grep "stretch"; then
     /sbin/iptables-save
     systemctl enable squid
     systemctl restart squid
-elif cat /etc/os-release | grep PRETTY_NAME | grep "buster"; then
+elif [ $SOK_OS == "debian10" ]; then
     # OS = Debian 10
     /bin/rm -rf /etc/squid
     /usr/bin/apt update
@@ -130,7 +137,7 @@ elif cat /etc/os-release | grep PRETTY_NAME | grep "buster"; then
     /sbin/iptables-save
     systemctl enable squid
     systemctl restart squid
-elif cat /etc/os-release | grep PRETTY_NAME | grep "bullseye"; then
+elif [ $SOK_OS == "debian11" ]; then
     # OS = Debian GNU/Linux 11 (bullseye)
     /bin/rm -rf /etc/squid
     /usr/bin/apt update
@@ -139,11 +146,13 @@ elif cat /etc/os-release | grep PRETTY_NAME | grep "bullseye"; then
     /bin/rm -f /etc/squid/squid.conf
     /usr/bin/touch /etc/squid/blacklist.acl
     /usr/bin/wget --no-check-certificate -O /etc/squid/squid.conf https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/squid.conf
-    /sbin/iptables -I INPUT -p tcp --dport 3128 -j ACCEPT
-    /sbin/iptables-save
+    if [ -f /sbin/iptables ]; then
+        /sbin/iptables -I INPUT -p tcp --dport 3128 -j ACCEPT
+        /sbin/iptables-save
+    fi
     systemctl enable squid
     systemctl restart squid
-elif cat /etc/os-release | grep PRETTY_NAME | grep "CentOS Linux 7"; then
+elif [ $SOK_OS == "centos7" ]; then
     yum install squid httpd-tools -y
     /bin/rm -f /etc/squid/squid.conf
     /usr/bin/touch /etc/squid/blacklist.acl
@@ -152,7 +161,7 @@ elif cat /etc/os-release | grep PRETTY_NAME | grep "CentOS Linux 7"; then
     systemctl restart squid
     firewall-cmd --zone=public --permanent --add-port=3128/tcp
     firewall-cmd --reload
-elif cat /etc/os-release | grep PRETTY_NAME | grep "CentOS Linux 8"; then
+elif [ $SOK_OS == "centos8" ]; then
     yum install squid httpd-tools -y
     /bin/rm -f /etc/squid/squid.conf
     /usr/bin/touch /etc/squid/blacklist.acl

@@ -1,12 +1,12 @@
 #!/bin/bash
+
 ############################################################
 # Squid Proxy Installer
 # Author: Yujin Boby
-# Email: info@serverok.in
+# Email: admin@serverOk.in
 # Github: https://github.com/serverok/squid-proxy-installer/
 # Web: https://serverok.in/squid
-############################################################
-# For paid support, contact
+# If you need professional assistance, reach out to
 # https://serverok.in/contact
 ############################################################
 
@@ -50,6 +50,8 @@ elif [ $SOK_OS == "debian8" ]; then
 elif [ $SOK_OS == "debian9" ]; then
     systemctl reload squid
 elif [ $SOK_OS == "debian10" ]; then
+    systemctl reload squid
+elif [ $SOK_OS == "debian11" ]; then
     systemctl reload squid
 elif [ $SOK_OS == "centos7" ]; then
     systemctl reload squid

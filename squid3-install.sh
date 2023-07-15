@@ -180,8 +180,10 @@ elif [ $SOK_OS == "centos7" ]; then
     /usr/bin/wget -q --no-check-certificate -O /etc/squid/squid.conf https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/conf/squid-centos7.conf
     systemctl enable squid
     systemctl restart squid
-    firewall-cmd --zone=public --permanent --add-port=3128/tcp
-    firewall-cmd --reload
+    if [ -f /usr/bin/firewall-cmd ]; then
+    firewall-cmd --zone=public --permanent --add-port=3128/tcp > /dev/null 2>&1
+    firewall-cmd --reload > /dev/null 2>&1
+    fi
 elif [ "$SOK_OS" == "centos8" ] || [ "$SOK_OS" == "almalinux8" ] || [ "$SOK_OS" == "almalinux9" ]; then
     yum install squid httpd-tools wget -y
     mv /etc/squid/squid.conf /etc/squid/squid.conf.bak
@@ -189,8 +191,10 @@ elif [ "$SOK_OS" == "centos8" ] || [ "$SOK_OS" == "almalinux8" ] || [ "$SOK_OS" 
     /usr/bin/wget -q --no-check-certificate -O /etc/squid/squid.conf https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/conf/squid-centos7.conf
     systemctl enable squid
     systemctl restart squid
-    firewall-cmd --zone=public --permanent --add-port=3128/tcp
-    firewall-cmd --reload
+    if [ -f /usr/bin/firewall-cmd ]; then
+    firewall-cmd --zone=public --permanent --add-port=3128/tcp > /dev/null 2>&1
+    firewall-cmd --reload > /dev/null 2>&1
+    fi
 elif [ "$SOK_OS" == "centos8s" ]; then
     dnf install squid httpd-tools wget -y > /dev/null 2>&1
     mv /etc/squid/squid.conf /etc/squid/squid.conf.bak 

@@ -57,7 +57,7 @@ elif [ $SOK_OS == "debian9" ]; then
     systemctl reload squid
 elif [ $SOK_OS == "debian10" ]; then
     systemctl reload squid
-elif [ $SOK_OS == "debian11" ]; then
+elif [ "$SOK_OS" == "debian11" ] &&  "$SOK_OS" == "debian12" ]; then
     systemctl reload squid
 elif [ $SOK_OS == "centos7" ]; then
     systemctl reload squid

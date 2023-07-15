@@ -158,6 +158,21 @@ elif [ $SOK_OS == "debian11" ]; then
     fi
     systemctl enable squid
     systemctl restart squid
+elif [ $SOK_OS == "debian12" ]; then
+    # OS = Debian GNU/Linux 12 (bookworm)
+    /bin/rm -rf /etc/squid
+    /usr/bin/apt update
+    /usr/bin/apt -y install apache2-utils squid
+    touch /etc/squid/passwd
+    /bin/rm -f /etc/squid/squid.conf
+    /usr/bin/touch /etc/squid/blacklist.acl
+    /usr/bin/wget --no-check-certificate -O /etc/squid/squid.conf https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/squid.conf
+    if [ -f /sbin/iptables ]; then
+        /sbin/iptables -I INPUT -p tcp --dport 3128 -j ACCEPT
+        /sbin/iptables-save
+    fi
+    systemctl enable squid
+    systemctl restart squid
 elif [ $SOK_OS == "centos7" ]; then
     yum install squid httpd-tools -y
     /bin/rm -f /etc/squid/squid.conf

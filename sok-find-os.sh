@@ -28,6 +28,8 @@ elif cat /etc/os-release | grep PRETTY_NAME | grep "buster" > /dev/null; then
     echo "debian10"
 elif cat /etc/os-release | grep PRETTY_NAME | grep "bullseye" > /dev/null; then
     echo "debian11"
+elif cat /etc/os-release | grep PRETTY_NAME | grep "bookworm" > /dev/null; then
+    echo "debian12"
 elif cat /etc/os-release | grep PRETTY_NAME | grep "CentOS Linux 7" > /dev/null; then
     echo "centos7"
 elif cat /etc/os-release | grep PRETTY_NAME | grep "CentOS Linux 8" > /dev/null; then

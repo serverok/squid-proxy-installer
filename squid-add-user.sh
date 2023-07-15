@@ -28,41 +28,5 @@ else
     /usr/bin/htpasswd -c /etc/squid/passwd $proxy_username
 fi
 
-if [ ! -f /usr/local/bin/sok-find-os ]; then
-    echo "/usr/local/bin/sok-find-os not found"
-    exit 1
-fi
-
-SOK_OS=$(/usr/local/bin/sok-find-os)
-
-if [ "$SOK_OS" == "ERROR" ]; then
-    echo "OS NOT SUPPORTED.\n"
-    echo "Contact https://serverok.in/contact to add support for your OS."
-    exit 1;
-fi
-
-if [ $SOK_OS == "ubuntu2204" ]; then
-    systemctl reload squid
-elif [ $SOK_OS == "ubuntu2004" ]; then
-    systemctl reload squid
-elif [ $SOK_OS == "ubuntu1804" ]; then
-    systemctl reload squid
-elif [ $SOK_OS == "ubuntu1604" ]; then
-    service squid restart
-elif [ $SOK_OS == "ubuntu1404" ]; then
-    service squid3 restart
-elif [ $SOK_OS == "debian8" ]; then
-    service squid3 restart
-elif [ $SOK_OS == "debian9" ]; then
-    systemctl reload squid
-elif [ $SOK_OS == "debian10" ]; then
-    systemctl reload squid
-elif [ "$SOK_OS" == "debian11" ] &&  "$SOK_OS" == "debian12" ]; then
-    systemctl reload squid
-elif [ $SOK_OS == "centos7" ]; then
-    systemctl reload squid
-elif [ $SOK_OS == "centos8s" ]; then
-    systemctl reload squid
-elif [ "$SOK_OS" == "centos8" ] || [ "$SOK_OS" == "almalinux8" ] || [ "$SOK_OS" == "almalinux9" ]; then
-    systemctl reload squid
-fi
+systemctl reload squid > /dev/null 2>&1
+service squid3 restart > /dev/null 2>&1

@@ -206,6 +206,17 @@ elif [ "$SOK_OS" == "centos8s" ]; then
     firewall-cmd --zone=public --permanent --add-port=3128/tcp > /dev/null 2>&1
     firewall-cmd --reload > /dev/null 2>&1
     fi
+elif [ "$SOK_OS" == "centos9" ]; then
+    dnf install squid httpd-tools wget -y > /dev/null 2>&1
+    mv /etc/squid/squid.conf /etc/squid/squid.conf.sok
+    /usr/bin/touch /etc/squid/blacklist.acl
+    /usr/bin/wget -q --no-check-certificate -O /etc/squid/squid.conf https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/conf/squid-centos7.conf
+    systemctl enable squid  > /dev/null 2>&1
+    systemctl restart squid > /dev/null 2>&1
+    if [ -f /usr/bin/firewall-cmd ]; then
+    firewall-cmd --zone=public --permanent --add-port=3128/tcp > /dev/null 2>&1
+    firewall-cmd --reload > /dev/null 2>&1
+    fi
 fi
 
 echo

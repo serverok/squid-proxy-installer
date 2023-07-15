@@ -32,6 +32,10 @@ elif cat /etc/os-release | grep PRETTY_NAME | grep "CentOS Linux 7" > /dev/null;
     echo "centos7"
 elif cat /etc/os-release | grep PRETTY_NAME | grep "CentOS Linux 8" > /dev/null; then
     echo "centos8"
+elif cat /etc/os-release | grep PRETTY_NAME | grep "AlmaLinux 8" > /dev/null; then
+    echo "almalinux8"
+elif cat /etc/os-release | grep PRETTY_NAME | grep "AlmaLinux 8" > /dev/null; then
+    echo "almalinux9"
 else
-    echo "OS NOT SUPPORTED"
+    echo "ERROR"
 fi

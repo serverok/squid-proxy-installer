@@ -36,6 +36,12 @@ fi
 
 SOK_OS=$(/usr/local/bin/sok-find-os)
 
+if [ $SOK_OS == "ERROR" ]; then
+    echo "OS NOT SUPPORTED.\n"
+    echo "Contact https://serverok.in/contact to add support for your OS."
+    exit 1;
+fi
+
 if [ $SOK_OS == "ubuntu2204" ]; then
     /usr/bin/apt update
     /usr/bin/apt -y install apache2-utils squid
@@ -161,7 +167,7 @@ elif [ $SOK_OS == "centos7" ]; then
     systemctl restart squid
     firewall-cmd --zone=public --permanent --add-port=3128/tcp
     firewall-cmd --reload
-elif [ $SOK_OS == "centos8" ]; then
+elif [ $SOK_OS == "centos8" ] || [ $SOK_OS == "almalinux8"] || [ $SOK_OS == "almalinux9"]; then
     yum install squid httpd-tools -y
     /bin/rm -f /etc/squid/squid.conf
     /usr/bin/touch /etc/squid/blacklist.acl

@@ -167,7 +167,7 @@ elif [ $SOK_OS == "centos7" ]; then
     systemctl restart squid
     firewall-cmd --zone=public --permanent --add-port=3128/tcp
     firewall-cmd --reload
-elif [ $SOK_OS == "centos8" ] || [ $SOK_OS == "almalinux8"] || [ $SOK_OS == "almalinux9"]; then
+elif [ "$SOK_OS" == "centos8" ] || [ "$SOK_OS" == "almalinux8" ] || [ "$SOK_OS" == "almalinux9" ]; then
     yum install squid httpd-tools -y
     /bin/rm -f /etc/squid/squid.conf
     /usr/bin/touch /etc/squid/blacklist.acl

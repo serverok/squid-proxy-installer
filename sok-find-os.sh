@@ -33,7 +33,5 @@ elif cat /etc/os-release | grep PRETTY_NAME | grep "CentOS Linux 7" > /dev/null;
 elif cat /etc/os-release | grep PRETTY_NAME | grep "CentOS Linux 8" > /dev/null; then
     echo "centos8"
 else
-    echo "OS NOT SUPPORTED.\n"
-    echo "Contact https://serverok.in/contact to add support for your os."
-    exit 1;
+    echo "OS NOT SUPPORTED"
 fi

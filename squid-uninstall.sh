@@ -22,6 +22,12 @@ fi
 
 SOK_OS=$(/usr/local/bin/sok-find-os)
 
+if [ $SOK_OS == "ERROR" ]; then
+    echo "OS NOT SUPPORTED.\n"
+    echo "Contact https://serverok.in/contact to add support for your OS."
+    exit 1;
+fi
+
 if [ $SOK_OS == "ubuntu2204" ]; then
     /usr/bin/apt -y remove --purge squid squid-common squid-langpack
     rm -rf /etc/squid/
@@ -59,10 +65,15 @@ elif [ $SOK_OS == "debian11" ]; then
     /usr/bin/apt -y remove --purge squid squid-common squid-langpack
     /bin/rm -rf /etc/squid/
     /bin/rm -rf /var/spool/squid
+elif [ $SOK_OS == "debian12" ]; then
+    echo "Uninstalling Squid Proxy on Debian 12"
+    /usr/bin/apt -y remove --purge squid squid-common squid-langpack
+    /bin/rm -rf /etc/squid/
+    /bin/rm -rf /var/spool/squid
 elif [ $SOK_OS == "centos7" ]; then
     yum remove squid -y
     /bin/rm -rf /etc/squid/
-elif [ $SOK_OS == "centos8" ]; then
+elif [ "$SOK_OS" == "centos8" ] || [ "$SOK_OS" == "almalinux8" ] || [ "$SOK_OS" == "almalinux9" ]; then
     yum remove squid -y
     /bin/rm -rf /etc/squid/
 fi

@@ -76,6 +76,9 @@ elif [ $SOK_OS == "centos7" ]; then
 elif [ "$SOK_OS" == "centos8" ] || [ "$SOK_OS" == "almalinux8" ] || [ "$SOK_OS" == "almalinux9" ]; then
     yum remove squid -y
     /bin/rm -rf /etc/squid/
+elif [ "$SOK_OS" == "centos8s" ]; then
+    dnf remove squid -y
+    /bin/rm -rf /etc/squid/
 fi
 
 rm -f /usr/local/bin/squid-add-user > /dev/null 2>&1

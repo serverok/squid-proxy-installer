@@ -38,6 +38,8 @@ elif cat /etc/os-release | grep PRETTY_NAME | grep "AlmaLinux 8" > /dev/null; th
     echo "almalinux8"
 elif cat /etc/os-release | grep PRETTY_NAME | grep "AlmaLinux 8" > /dev/null; then
     echo "almalinux9"
+elif cat /etc/os-release | grep PRETTY_NAME | grep "CentOS Stream 8" > /dev/null; then
+    echo "centos8s"
 else
     echo "ERROR"
 fi

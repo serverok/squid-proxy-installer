@@ -43,8 +43,8 @@ if [ $SOK_OS == "ERROR" ]; then
 fi
 
 if [ $SOK_OS == "ubuntu2204" ]; then
-    /usr/bin/apt update
-    /usr/bin/apt -y install apache2-utils squid
+    /usr/bin/apt update > /dev/null 2>&1
+    /usr/bin/apt -y install apache2-utils squid > /dev/null 2>&1
     touch /etc/squid/passwd
     mv /etc/squid/squid.conf /etc/squid/squid.conf.bak
     /usr/bin/touch /etc/squid/blacklist.acl
@@ -56,8 +56,8 @@ if [ $SOK_OS == "ubuntu2204" ]; then
     service squid restart
     systemctl enable squid
 elif [ $SOK_OS == "ubuntu2004" ]; then
-    /usr/bin/apt update
-    /usr/bin/apt -y install apache2-utils squid
+    /usr/bin/apt update > /dev/null 2>&1
+    /usr/bin/apt -y install apache2-utils squid > /dev/null 2>&1
     touch /etc/squid/passwd
     /bin/rm -f /etc/squid/squid.conf
     /usr/bin/touch /etc/squid/blacklist.acl
@@ -69,8 +69,8 @@ elif [ $SOK_OS == "ubuntu2004" ]; then
     service squid restart
     systemctl enable squid
 elif [ $SOK_OS == "ubuntu1804" ]; then
-    /usr/bin/apt update
-    /usr/bin/apt -y install apache2-utils squid3
+    /usr/bin/apt update > /dev/null 2>&1
+    /usr/bin/apt -y install apache2-utils squid3 > /dev/null 2>&1
     touch /etc/squid/passwd
     /bin/rm -f /etc/squid/squid.conf
     /usr/bin/touch /etc/squid/blacklist.acl
@@ -80,8 +80,8 @@ elif [ $SOK_OS == "ubuntu1804" ]; then
     service squid restart
     systemctl enable squid
 elif [ $SOK_OS == "ubuntu1604" ]; then
-    /usr/bin/apt update
-    /usr/bin/apt -y install apache2-utils squid3
+    /usr/bin/apt update > /dev/null 2>&1
+    /usr/bin/apt -y install apache2-utils squid3 > /dev/null 2>&1
     touch /etc/squid/passwd
     /bin/rm -f /etc/squid/squid.conf
     /usr/bin/touch /etc/squid/blacklist.acl
@@ -91,8 +91,8 @@ elif [ $SOK_OS == "ubuntu1604" ]; then
     service squid restart
     update-rc.d squid defaults
 elif [ $SOK_OS == "ubuntu1404" ]; then
-    /usr/bin/apt update
-    /usr/bin/apt -y install apache2-utils squid3
+    /usr/bin/apt update > /dev/null 2>&1
+    /usr/bin/apt -y install apache2-utils squid3 > /dev/null 2>&1
     touch /etc/squid3/passwd
     /bin/rm -f /etc/squid3/squid.conf
     /usr/bin/touch /etc/squid3/blacklist.acl
@@ -106,8 +106,8 @@ elif [ $SOK_OS == "ubuntu1404" ]; then
 elif [ $SOK_OS == "debian8" ]; then
     # OS = Debian 8
     /bin/rm -rf /etc/squid
-    /usr/bin/apt update
-    /usr/bin/apt -y install apache2-utils squid3
+    /usr/bin/apt update > /dev/null 2>&1
+    /usr/bin/apt -y install apache2-utils squid3 > /dev/null 2>&1
     touch /etc/squid3/passwd
     /bin/rm -f /etc/squid3/squid.conf
     /usr/bin/touch /etc/squid3/blacklist.acl
@@ -120,8 +120,8 @@ elif [ $SOK_OS == "debian8" ]; then
 elif [ $SOK_OS == "debian9" ]; then
     # OS = Debian 9
     /bin/rm -rf /etc/squid
-    /usr/bin/apt update
-    /usr/bin/apt -y install apache2-utils squid
+    /usr/bin/apt update > /dev/null 2>&1
+    /usr/bin/apt -y install apache2-utils squid > /dev/null 2>&1
     touch /etc/squid/passwd
     /bin/rm -f /etc/squid/squid.conf
     /usr/bin/touch /etc/squid/blacklist.acl
@@ -133,8 +133,8 @@ elif [ $SOK_OS == "debian9" ]; then
 elif [ $SOK_OS == "debian10" ]; then
     # OS = Debian 10
     /bin/rm -rf /etc/squid
-    /usr/bin/apt update
-    /usr/bin/apt -y install apache2-utils squid
+    /usr/bin/apt update > /dev/null 2>&1
+    /usr/bin/apt -y install apache2-utils squid > /dev/null 2>&1
     touch /etc/squid/passwd
     /bin/rm -f /etc/squid/squid.conf
     /usr/bin/touch /etc/squid/blacklist.acl
@@ -146,8 +146,8 @@ elif [ $SOK_OS == "debian10" ]; then
 elif [ $SOK_OS == "debian11" ]; then
     # OS = Debian GNU/Linux 11 (bullseye)
     /bin/rm -rf /etc/squid
-    /usr/bin/apt update
-    /usr/bin/apt -y install apache2-utils squid
+    /usr/bin/apt update > /dev/null 2>&1
+    /usr/bin/apt -y install apache2-utils squid > /dev/null 2>&1
     touch /etc/squid/passwd
     /bin/rm -f /etc/squid/squid.conf
     /usr/bin/touch /etc/squid/blacklist.acl
@@ -161,12 +161,10 @@ elif [ $SOK_OS == "debian11" ]; then
 elif [ $SOK_OS == "debian12" ]; then
     # OS = Debian GNU/Linux 12 (bookworm)
     /bin/rm -rf /etc/squid
-    /usr/bin/apt update
-    /usr/bin/apt -y install apache2-utils squid
+    /usr/bin/apt update > /dev/null 2>&1
+    /usr/bin/apt -y install apache2-utils squid  > /dev/null 2>&1
     touch /etc/squid/passwd
-    mv /etc/squid/squid.conf /etc/squid/squid.conf.default
-    /usr/bin/touch /etc/squid/blacklist.acl
-    /usr/bin/wget -q --no-check-certificate -O /etc/squid/squid.conf https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/squid.conf
+    /usr/bin/wget -q --no-check-certificate -O /etc/squid/conf.d/serverok.conf https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/conf/debian12.conf
     if [ -f /sbin/iptables ]; then
         /sbin/iptables -I INPUT -p tcp --dport 3128 -j ACCEPT
         /sbin/iptables-save

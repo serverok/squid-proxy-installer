@@ -217,8 +217,14 @@ elif [ "$SOK_OS" == "centos9" ]; then
     fi
 fi
 
+GREEN='\033[0;32m'
+CYAN='\033[0;36m'
+NC='\033[0m'
+
+echo -e "${NC}"
+echo -e "${GREEN}Thank you for using ServerOk Squid Proxy Installer.${NC}"
 echo
-echo "Thank you for using Squid Proxy Installer by ServerOk"
-echo "To create a proxy user, run command: squid-add-user"
-echo "To change squid proxy port, see https://serverok.in/how-to-change-port-of-squid-proxy-server"
-echo 
+echo -e "${CYAN}To create a proxy user, run command: squid-add-user${NC}"
+echo -e "${CYAN}To change squid proxy port, see ${GREEN}https://serverok.in/how-to-change-port-of-squid-proxy-server${NC}"
+echo -e "${NC}"
+

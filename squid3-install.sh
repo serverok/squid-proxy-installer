@@ -25,7 +25,9 @@ chmod 755 /usr/local/bin/squid-uninstall
 chmod 755 /usr/local/bin/squid-add-user
 
 if [[ -d /etc/squid/ || -d /etc/squid3/ ]]; then
-    echo "Squid Proxy already installed. If you want to reinstall, first uninstall squid proxy by running command: squid-uninstall"
+    echo -e "\nSquid Proxy already installed.\n"
+    echo -e "If you want to reinstall, first uninstall squid proxy by running the following command:\n"
+    echo -e "sudo squid-uninstall\n"
     exit 1
 fi
 

@@ -24,8 +24,13 @@ SOK_OS=$(/usr/local/bin/sok-find-os)
 
 if [ $SOK_OS == "ERROR" ]; then
     cat /etc/*release
-    echo -e "\nOS NOT SUPPORTED.\n"
-    echo -e "Contact https://serverok.in/contact to add support for your OS.\n"
+    echo
+    echo -e "\e[1;31m====================================================="
+    echo -e "\e[1;31mOS NOT SUPPORTED"
+    echo -e "\e[1;31m====================================================="
+    echo -e "\e[0m"
+    echo -e "Contact me to add support for your OS.\n"
+    echo -e "https://serverok.in/contact\n"
     exit 1;
 fi
 

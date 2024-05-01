@@ -37,12 +37,25 @@ fi
 SOK_OS=$(/usr/local/bin/sok-find-os)
 
 if [ $SOK_OS == "ERROR" ]; then
-    echo "OS NOT SUPPORTED.\n"
-    echo "Contact https://serverok.in/contact to add support for your OS."
+    cat /etc/*release
+    echo -e "\nOS NOT SUPPORTED.\n"
+    echo -e "Contact https://serverok.in/contact to add support for your OS.\n"
     exit 1;
 fi
 
-if [ $SOK_OS == "ubuntu2204" ]; then
+if [ $SOK_OS == "ubuntu2404" ]; then
+    /usr/bin/apt update > /dev/null 2>&1
+    /usr/bin/apt -y install apache2-utils squid > /dev/null 2>&1
+    touch /etc/squid/passwd
+    mv /etc/squid/squid.conf /etc/squid/squid.conf.bak
+    /usr/bin/touch /etc/squid/blacklist.acl
+    /usr/bin/wget -q --no-check-certificate -O /etc/squid/squid.conf https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/conf/ubuntu-2204.conf
+    if [ -f /sbin/iptables ]; then
+        /sbin/iptables -I INPUT -p tcp --dport 3128 -j ACCEPT
+    fi
+    systemctl enable squid
+    service squid restart
+elif [ $SOK_OS == "ubuntu2204" ]; then
     /usr/bin/apt update > /dev/null 2>&1
     /usr/bin/apt -y install apache2-utils squid > /dev/null 2>&1
     touch /etc/squid/passwd

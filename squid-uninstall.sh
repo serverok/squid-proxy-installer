@@ -23,12 +23,16 @@ fi
 SOK_OS=$(/usr/local/bin/sok-find-os)
 
 if [ $SOK_OS == "ERROR" ]; then
-    echo "OS NOT SUPPORTED.\n"
-    echo "Contact https://serverok.in/contact to add support for your OS."
+    cat /etc/*release
+    echo -e "\nOS NOT SUPPORTED.\n"
+    echo -e "Contact https://serverok.in/contact to add support for your OS.\n"
     exit 1;
 fi
 
-if [ $SOK_OS == "ubuntu2204" ]; then
+if [ $SOK_OS == "ubuntu2404" ]; then
+    /usr/bin/apt -y remove --purge squid squid-common squid-langpack
+    rm -rf /etc/squid/
+elif [ $SOK_OS == "ubuntu2204" ]; then
     /usr/bin/apt -y remove --purge squid squid-common squid-langpack
     rm -rf /etc/squid/
 elif [ $SOK_OS == "ubuntu2004" ]; then

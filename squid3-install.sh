@@ -46,6 +46,7 @@ if [ $SOK_OS == "ERROR" ]; then
 fi
 
 if [ $SOK_OS == "ubuntu2404" ]; then
+    echo -e "Installing squid, please wait....\n"
     /usr/bin/apt update > /dev/null 2>&1
     /usr/bin/apt -y install apache2-utils squid > /dev/null 2>&1
     touch /etc/squid/passwd
@@ -55,7 +56,7 @@ if [ $SOK_OS == "ubuntu2404" ]; then
     if [ -f /sbin/iptables ]; then
         /sbin/iptables -I INPUT -p tcp --dport 3128 -j ACCEPT
     fi
-    systemctl enable squid
+    systemctl enable squid  > /dev/null 2>&1
     service squid restart
 elif [ $SOK_OS == "ubuntu2204" ]; then
     /usr/bin/apt update > /dev/null 2>&1

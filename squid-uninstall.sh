@@ -15,12 +15,12 @@ if [ `whoami` != root ]; then
 	exit 1
 fi
 
-if [ ! -f /usr/local/bin/sok-find-os ]; then
-    echo "/usr/local/bin/sok-find-os not found"
+if [ ! -f /usr/bin/sok-find-os ]; then
+    echo "/usr/bin/sok-find-os not found"
     exit 1
 fi
 
-SOK_OS=$(/usr/local/bin/sok-find-os)
+SOK_OS=$(/usr/bin/sok-find-os)
 
 if [ $SOK_OS == "ERROR" ]; then
     cat /etc/*release
@@ -93,10 +93,10 @@ elif [ "$SOK_OS" == "centos9" ]; then
     /bin/rm -rf /etc/squid/
 fi
 
-rm -f /usr/local/bin/squid-add-user > /dev/null 2>&1
+rm -f /usr/bin/squid-add-user > /dev/null 2>&1
 rm -f /root/squid3-install.sh > /dev/null 2>&1
-rm -f /usr/local/bin/sok-find-os > /dev/null 2>&1
-rm -f /usr/local/bin/squid-uninstall > /dev/null 2>&1
+rm -f /usr/bin/sok-find-os > /dev/null 2>&1
+rm -f /usr/bin/squid-uninstall > /dev/null 2>&1
 
 echo 
 echo 

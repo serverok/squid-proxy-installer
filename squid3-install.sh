@@ -15,14 +15,14 @@ if [ `whoami` != root ]; then
 	exit 1
 fi
 
-/usr/bin/wget -q --no-check-certificate -O /usr/local/bin/sok-find-os https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/sok-find-os.sh > /dev/null 2>&1
-chmod 755 /usr/local/bin/sok-find-os
+/usr/bin/wget -q --no-check-certificate -O /usr/bin/sok-find-os https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/sok-find-os.sh > /dev/null 2>&1
+chmod 755 /usr/bin/sok-find-os
 
-/usr/bin/wget -q --no-check-certificate -O /usr/local/bin/squid-uninstall https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/squid-uninstall.sh > /dev/null 2>&1
-chmod 755 /usr/local/bin/squid-uninstall
+/usr/bin/wget -q --no-check-certificate -O /usr/bin/squid-uninstall https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/squid-uninstall.sh > /dev/null 2>&1
+chmod 755 /usr/bin/squid-uninstall
 
-/usr/bin/wget -q --no-check-certificate -O /usr/local/bin/squid-add-user https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/squid-add-user.sh > /dev/null 2>&1
-chmod 755 /usr/local/bin/squid-add-user
+/usr/bin/wget -q --no-check-certificate -O /usr/bin/squid-add-user https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/squid-add-user.sh > /dev/null 2>&1
+chmod 755 /usr/bin/squid-add-user
 
 if [[ -d /etc/squid/ || -d /etc/squid3/ ]]; then
     echo -e "\nSquid Proxy already installed.\n"
@@ -31,12 +31,12 @@ if [[ -d /etc/squid/ || -d /etc/squid3/ ]]; then
     exit 1
 fi
 
-if [ ! -f /usr/local/bin/sok-find-os ]; then
-    echo "/usr/local/bin/sok-find-os not found"
+if [ ! -f /usr/bin/sok-find-os ]; then
+    echo "/usr/bin/sok-find-os not found"
     exit 1
 fi
 
-SOK_OS=$(/usr/local/bin/sok-find-os)
+SOK_OS=$(/usr/bin/sok-find-os)
 
 if [ $SOK_OS == "ERROR" ]; then
     cat /etc/*release
@@ -45,8 +45,9 @@ if [ $SOK_OS == "ERROR" ]; then
     exit 1;
 fi
 
+echo -e "Installing squid on ${SOK_OS}, please wait....\n"
+
 if [ $SOK_OS == "ubuntu2404" ]; then
-    echo -e "Installing squid, please wait....\n"
     /usr/bin/apt update > /dev/null 2>&1
     /usr/bin/apt -y install apache2-utils squid > /dev/null 2>&1
     touch /etc/squid/passwd
@@ -243,4 +244,3 @@ echo
 echo -e "${CYAN}To create a proxy user, run command: squid-add-user${NC}"
 echo -e "${CYAN}To change squid proxy port, see ${GREEN}https://serverok.in/how-to-change-port-of-squid-proxy-server${NC}"
 echo -e "${NC}"
-

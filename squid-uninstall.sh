@@ -20,6 +20,8 @@ if [ ! -f /usr/bin/sok-find-os ]; then
     exit 1
 fi
 
+rm -f /root/squid3-install.sh > /dev/null 2>&1
+
 SOK_OS=$(/usr/bin/sok-find-os)
 
 if [ $SOK_OS == "ERROR" ]; then
@@ -94,7 +96,6 @@ elif [ "$SOK_OS" == "centos9" ]; then
 fi
 
 rm -f /usr/bin/squid-add-user > /dev/null 2>&1
-rm -f /root/squid3-install.sh > /dev/null 2>&1
 rm -f /usr/bin/sok-find-os > /dev/null 2>&1
 rm -f /usr/bin/squid-uninstall > /dev/null 2>&1
 

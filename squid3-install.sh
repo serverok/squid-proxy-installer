@@ -180,16 +180,8 @@ elif [ $SOK_OS == "debian12" ]; then
     systemctl enable squid
     systemctl restart squid
 elif [ $SOK_OS == "centos7" ]; then
-    yum install squid httpd-tools -y
-    /bin/rm -f /etc/squid/squid.conf
-    /usr/bin/touch /etc/squid/blacklist.acl
-    /usr/bin/wget -q --no-check-certificate -O /etc/squid/squid.conf https://raw.githubusercontent.com/serverok/squid-proxy-installer/master/conf/squid-centos7.conf
-    systemctl enable squid
-    systemctl restart squid
-    if [ -f /usr/bin/firewall-cmd ]; then
-        firewall-cmd --zone=public --permanent --add-port=3128/tcp > /dev/null 2>&1
-        firewall-cmd --reload > /dev/null 2>&1
-    fi
+    echo "CentOS Linux 7 reached End of Life (EOL) nn June 30, 2024. Please use to newer OS"
+    exit 1
 elif [ "$SOK_OS" == "centos8" ] || [ "$SOK_OS" == "almalinux8" ] || [ "$SOK_OS" == "almalinux9" ]; then
     yum install squid httpd-tools wget -y
     mv /etc/squid/squid.conf /etc/squid/squid.conf.bak

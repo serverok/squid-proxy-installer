@@ -5,7 +5,7 @@ https://serverok.in/squid
 Auto install Squid 3 proxy on following linux OS.
 
 * Ubuntu 24.04, 22.04, 20.04, 18.04 
-* Debian 12, 11, 10, 9, 8
+* Debian 13, 12, 11, 10, 9, 8
 * CentOS 8
 * CentOS Steam 9, 8
 * AlmaLinux 9, 8
